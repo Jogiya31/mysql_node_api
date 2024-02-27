@@ -73,3 +73,13 @@ app.get("/api/getOrderList", (req, res) => {
     }
   });
 });
+
+app.get("/api/getList", (req, res) => {
+  pool.query("select * from orders", (err, result) => {
+    if (err) {
+      res.json({ message: "Something went wrong.", error: err });
+    } else {
+      res.json({ status: 200, data: result });
+    }
+  });
+});
