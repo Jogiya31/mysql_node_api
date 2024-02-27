@@ -50,34 +50,34 @@ startServer();
 
 //---------------------------------------------MYSQL CONNECTION-------------------------------------------------------------//
 
-// here we get .env variables
-PORT = process.env.PORT || 8085;
+// // here we get .env variables
+// PORT = process.env.PORT || 8085;
 
-// here we listen the server from  the begining
-app.listen(PORT, () => {
-  console.log(`server is listening at port ${PORT}`);
-});
+// // here we listen the server from  the begining
+// app.listen(PORT, () => {
+//   console.log(`server is listening at port ${PORT}`);
+// });
 
-const db = createConnection({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-});
+// const db = createConnection({
+//   host: process.env.HOST,
+//   user: process.env.USER,
+//   password: process.env.PASSWORD,
+//   database: process.env.DATABASE,
+// });
 
-db.connect((err) => {
-  if (err) {
-    throw err;
-  }
-  console.log("Mysql Database Connected");
-});
+// db.connect((err) => {
+//   if (err) {
+//     throw err;
+//   }
+//   console.log("Mysql Database Connected");
+// });
 
-app.get("/api/getOrderList", (req, res) => {
-  db.query("call getOrderList()", (err, result) => {
-    if (err) {
-      res.json({ message: "Something went wrong.", error: err });
-    } else {
-      res.json({ status: 200, data: result });
-    }
-  });
-});
+// app.get("/api/getOrderList", (req, res) => {
+//   db.query("call getOrderList()", (err, result) => {
+//     if (err) {
+//       res.json({ message: "Something went wrong.", error: err });
+//     } else {
+//       res.json({ status: 200, data: result });
+//     }
+//   });
+// });
