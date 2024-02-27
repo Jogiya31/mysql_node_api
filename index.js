@@ -53,6 +53,11 @@ if (process.env.NODE_ENV !== "production") {
 // // here we get .env variables
 PORT = 8080;
 
+// here we listen the server from  the begining
+app.listen(PORT, () => {
+  console.log(`server is listening at port ${PORT}`);
+});
+
 const db = createConnection({
   host: process.env.HOST,
   user: process.env.USER,
