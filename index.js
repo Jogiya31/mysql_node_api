@@ -1,5 +1,5 @@
 const express = require("express");
-const { createConnection } = require("mysql");
+const mysql = require("mysql");
 const { MongoClient } = require("mongodb");
 
 //----------------------------------------------------------------------------------------------------------//
@@ -49,31 +49,23 @@ if (process.env.NODE_ENV !== "production") {
 // startServer();
 
 //---------------------------------------------MYSQL CONNECTION-------------------------------------------------------------//
-
-// // here we get .env variables
-PORT = 8080;
-
-// here we listen the server from  the begining
-app.listen(PORT, () => {
-  console.log(`server is listening at port ${PORT}`);
-});
-
-const db = createConnection({
+// Initialize pool
+const pool = mysql.createPool({
+  connectionLimit: 10,
   host: "localhost",
-  user: "root",
-  password: "password",
-  database: "classicmodels",
+  user: 'root',
+  password: 'password',
+  database: 'classicmodels',
 });
 
-db.connect((err) => {
-  if (err) {
-    console.log('err', err);
-  }
-  console.log("Mysql Database Connected");
+const PORT = 3000; // Choose any available port
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 app.get("/api/getOrderList", (req, res) => {
-  db.query("call getOrderList()", (err, result) => {
+  pool.query("call getOrderList()", (err, result) => {
     if (err) {
       res.json({ message: "Something went wrong.", error: err });
     } else {
