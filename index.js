@@ -51,12 +51,7 @@ if (process.env.NODE_ENV !== "production") {
 //---------------------------------------------MYSQL CONNECTION-------------------------------------------------------------//
 
 // // here we get .env variables
-PORT = process.env.PORT || 8085;
-
-// here we listen the server from  the begining
-app.listen(PORT, () => {
-  console.log(`server is listening at port ${PORT}`);
-});
+PORT = 8080;
 
 const db = createConnection({
   host: process.env.HOST,
